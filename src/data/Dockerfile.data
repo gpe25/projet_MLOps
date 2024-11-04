@@ -1,0 +1,40 @@
+# Utilisation image Python officielle
+# FROM python:3.11.7
+FROM python:3.11-slim
+
+# Définition du répertoire de travail
+WORKDIR /app/src/data/
+
+# Copie du fichier requirements
+# COPY requirements_data.txt requirements.txt
+
+# Installation des dépendances
+# RUN pip install --no-cache-dir -r requirements.txt
+RUN python3 -m pip install --no-cache-dir \
+    pandas==2.2.2 \
+    pillow==10.4.0 \
+    ImageHash==4.3.1 \
+    fastapi httptools==0.6.* uvloop uvicorn \
+    passlib==1.7.4 \
+    zipp==3.20.2 \
+    numpy==2.1 \
+    requests==2.32.3 \
+    pytest==8.3.2 \
+    python-dotenv
+
+# Copie des fichiers sources
+COPY 00-initial_data_creation.py 00-initial_data_creation.py \
+     data_ingestion.py data_ingestion.py \
+     data_utils.py data_utils.py \
+     data_validation.py data_validation.py \
+     db_api.py db_api.py \
+     extract_dataset_init.py extract_dataset_init.py \
+     model_ds_integ.py model_ds_integ.py \
+     pexels_api_utils.py pexels_api_utils.py \
+     TU-data.py TU-data.py /app/src/data/
+
+# Utilisation du port 8000 pour l'API
+EXPOSE 8000
+
+# Exécution de l'API au lancement du conteneur
+ENTRYPOINT ["python3", "db_api.py"]

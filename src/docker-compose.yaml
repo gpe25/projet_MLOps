@@ -1,0 +1,158 @@
+version: "3.9"
+services:
+  data:
+    image: gpe25/animal_recognition_data:1.0.0
+    container_name: src_data
+    networks:
+      - network_app_cp
+    volumes:
+      - data_volume:/app/data
+      - config_volume:/app/src/config
+      - logs_volume:/app/logs
+      - references_volume:/app/references
+    environment:
+      - DOCKER_ENV=True
+    # ports:
+    #   - "8000:8000"
+
+  mlflow:
+    image: gpe25/animal_recognition_mlflow:1.0.0
+    container_name: src_mlflow
+    networks:
+      - network_app_cp
+    volumes:
+      - config_volume:/app/src/config
+      - models_volume:/mlruns
+    environment:
+      - DOCKER_ENV=True
+    ports:
+      - "5000:5000"
+      # - "8001:8001"
+
+  predict:
+    image: gpe25/animal_recognition_predict:1.0.0
+    container_name: src_predict
+    networks:
+      - network_app_cp
+    volumes:
+      - data_volume:/app/data
+      - config_volume:/app/src/config
+      - models_volume:/app/models/mlruns
+    environment:
+      - DOCKER_ENV=True
+    # ports:
+    #   - "8002:8002"
+
+  train:
+    image: gpe25/animal_recognition_train:1.0.0
+    container_name: src_train
+    networks:
+      - network_app_cp
+    volumes:
+      - data_volume:/app/data
+      - config_volume:/app/src/config
+      - logs_volume:/app/logs
+      - models_volume:/mlruns
+    environment:
+      - DOCKER_ENV=True
+      - NVIDIA_VISIBLE_DEVICES=all
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
+    # ports:
+    #   - "8003:8003"
+    restart: always
+  
+  app:
+    image: gpe25/animal_recognition_app:1.0.0
+    container_name: src_app
+    networks:
+      - network_app_cp
+    volumes:
+      - data_volume:/app/data
+      - config_volume:/app/src/config
+      - logs_volume:/app/logs
+      - references_volume:/app/references
+    environment:
+      - DOCKER_ENV=True
+    ports:
+      - "8501:8501"
+
+  #  test2:
+  #     image: authorization_test:1.0
+  #     container_name: author_test
+  #     networks:
+  #        - network_tests_api_cp
+  #     volumes:
+  #        - ./:/test/LOG
+  #     environment:
+  #        - LOG=1
+  #     depends_on:
+  #        - fast_api
+  #        - test1
+
+  #  test3:
+  #     image: content_test:1.0
+  #     container_name: content_test
+  #     networks:
+  #        - network_tests_api_cp
+  #     volumes:
+  #        - ./:/test/LOG
+  #     environment:
+  #        - LOG=1
+  #     depends_on:
+  #        - fast_api
+  #        - test1
+  #        - test2
+
+# mlflow:
+  #   image: ghcr.io/mlflow/mlflow:v2.17.0rc0
+  #   container_name: src_mlflow
+  #   networks:
+  #     - network_app_cp
+  #   volumes:
+  #     - ../models/mlruns:/mlruns
+  #   environment:
+  #     - MLFLOW_TRACKING_URI=http://127.0.0.1:8080
+  #     - MLFLOW_ARTIFACT_ROOT=/models/mlruns
+  #   command: ["mlflow", "server", "--host", "0.0.0.0", "--port", "8080", "--default-artifact-root", "./mlruns"]
+  #   ports:
+  #     - "8080:8080"
+
+networks:
+   network_app_cp:
+      driver: bridge
+
+volumes:
+  data_volume:
+    driver: local
+    driver_opts:
+      type: none
+      device: ../data  # Chemin local
+      o: bind
+  config_volume:
+    driver: local
+    driver_opts:
+      type: none
+      device: ./config  # Chemin local
+      o: bind
+  logs_volume:
+    driver: local
+    driver_opts:
+      type: none
+      device: ../logs  # Chemin local
+      o: bind
+  references_volume:
+    driver: local
+    driver_opts:
+      type: none
+      device: ../references  # Chemin local
+      o: bind
+  models_volume:
+    driver: local
+    driver_opts:
+      type: none
+      device: ../models/mlruns  # Chemin local
+      o: bind

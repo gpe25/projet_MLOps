@@ -1,0 +1,20 @@
+# Utilisation image Python officielle
+FROM python:3.11-slim
+
+# Installation des dépendances
+RUN python3 -m pip install --no-cache-dir \
+    mlflow==2.9.2 \
+    fastapi httptools==0.6.* uvloop uvicorn \
+    passlib==1.7.4 \
+    python-dotenv
+
+# Copie des fichiers sources
+COPY mlf_functions.py mlf_functions.py \
+     mlf_api.py mlf_api.py \
+     mlflow_start.sh mlflow_start.sh app/src/mlflow/
+
+# Utilisation des port 5000 pour mlflow et 8001 pour l'API
+EXPOSE 5000 8001
+
+# Exécution de l'API au lancement du conteneur
+ENTRYPOINT ["app/src/mlflow/mlflow_start.sh"]

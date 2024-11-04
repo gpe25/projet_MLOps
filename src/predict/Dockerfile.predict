@@ -1,0 +1,26 @@
+# Utilisation image Python officielle
+FROM python:3.9-slim
+
+# Installation des dépendances
+RUN python3 -m pip install --no-cache-dir \
+    tflite-runtime \
+    fastapi httptools==0.6.* uvloop uvicorn \
+    numpy==1.26.4 \
+    pillow==10.4.0 \
+    requests==2.32.3 \
+    scikit-learn==1.5.2 \
+    python-dotenv \
+    passlib==1.7.4
+
+# Copie des fichiers sources
+COPY predict_model.py predict_model.py \
+     predict_api.py predict_api.py /app/src/predict/
+
+# Utilisation du port 8002 pour l'API
+EXPOSE 8002
+
+# Définition du répertoire de travail
+WORKDIR /app/src/predict/
+
+# Exécution de l'API au lancement du conteneur
+ENTRYPOINT ["python3", "predict_api.py"]

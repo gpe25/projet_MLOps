@@ -1,0 +1,25 @@
+# Utilisation image Python officielle
+FROM tensorflow/tensorflow:2.10.0-gpu
+
+# Utilisation des GPUs disponibles
+# ENV NVIDIA_VISIBLE_DEVICES=all
+
+# Installation des dépendances
+RUN python3 -m pip install --no-cache-dir \
+    mlflow==2.9.2 \
+    fastapi httptools==0.6.* uvloop uvicorn \
+    passlib==1.7.4 \
+    python-dotenv
+
+# Copie des fichiers sources
+COPY train_model.py train_model.py \
+     train_api.py train_api.py /app/src/train/
+
+# Utilisation du port 8003 pour l'API
+EXPOSE 8003
+
+# Définition du répertoire de travail
+WORKDIR /app/src/train/
+
+# Exécution de l'API au lancement du conteneur
+ENTRYPOINT ["python3", "train_api.py"]
