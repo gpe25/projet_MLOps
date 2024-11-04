@@ -127,7 +127,7 @@ Project Architecture
 
 
 ### 3- Launch application docker-compose
-    `cd \projet_MLOps\src`
+    `cd /projet_MLOps/src`
     `docker compose up`
 
     For the first run, this will take some time (around 5-6 minutes)
@@ -136,7 +136,7 @@ Project Architecture
 
 
 ### 4- In an other terminal Launch Airflow docker-compose
-    `cd \projet_MLOps\airflow`
+    `cd /projet_MLOps/airflow`
     `docker compose up airflow-init`
     `docker compose up`
 
