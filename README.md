@@ -137,6 +137,10 @@ Project Organization
 ### 5- Go to the Streamlit app
     http://localhost:8501/
 
-![Texte alternatif](/visualisations/Home_app.JPG "Streamlit Application")
+![Home application visual](/visualisations/01-Home_app.JPG "Streamlit Application")
 
-    the first action is to initialize the database from 'Interface Admin - démo' asset
+    the first action is to initialize the database from 'Interface Admin - démo' asset (after login with ADMIN_NAME and ADMIN_PWD defined in step 1)
+
+![Admin application visual](/visualisations/02a-Admin_Interface_app.JPG "Admin loging")
+![Admin application visual](/visualisations/02b-Admin_Interface_app.JPG "Admin interface")
+
