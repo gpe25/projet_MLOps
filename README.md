@@ -120,7 +120,7 @@ Project Organization
 
 
 ### 3- Launch application docker-compose
-    `cd mai24_cmlops_animaux/src`
+    `cd \projet_MLOps\src`
     `docker compose up`
 
     For the first run, this will take some time (around 5-6 minutes)
@@ -129,7 +129,7 @@ Project Organization
 
 
 ### 4- In an other terminal Launch Airflow docker-compose
-    `cd mai24_cmlops_animaux/airflow`
+    `cd \projet_MLOps\airflow`
     `docker compose up airflow-init`
     `docker compose up`
 
@@ -137,6 +137,6 @@ Project Organization
 ### 5- Go to the Streamlit app
     http://localhost:8501/
 
-    the first action is to initialize the database
+![Texte alternatif](/visualisations/Home_app.JPG "Streamlit Application")
 
-
+    the first action is to initialize the database from 'Interface Admin - démo' asset
