@@ -174,7 +174,7 @@ Project Architecture
     - Simulate an accelerated production in order to train a new model with Airflow pipeline
     and follow this one with MLflow
     (asset 'Production accélérée - démo')
-![Admin application visual](/visualisations/07-Accelerated_Production.JPG "Admin interface")
+![accelerated production](/visualisations/07-Accelerated_Production.JPG "accelerated production simulation")
 
     *Airflow interface is available on http://127.0.1.0:8080
 ![Airflow interface](/visualisations/08-New_model_pipeline.JPG "Airflow interface")
