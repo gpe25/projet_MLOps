@@ -95,6 +95,11 @@ Project Organization
 
 ---------
 
+Project Architecture
+------------
+![Architecture visual](/visualisations/00-architecture.jpg "Application architecture visual")
+
+
 ## Steps to follow 
 
 ### 1- Create the .env for application in /src/config
@@ -139,8 +144,39 @@ Project Organization
 
 ![Home application visual](/visualisations/01-Home_app.JPG "Streamlit Application")
 
-    the first action is to initialize the database from 'Interface Admin - démo' asset (after login with ADMIN_NAME and ADMIN_PWD defined in step 1)
+    The first action is to initialize the database from 'Interface Admin - démo' asset
+    (after login you with ADMIN_NAME and ADMIN_PWD defined in step 1)
 
 ![Admin application visual](/visualisations/02a-Admin_Interface_app.JPG "Admin loging")
 ![Admin application visual](/visualisations/02b-Admin_Interface_app.JPG "Admin interface")
+
+    The Database is now initialized.
+
+![Admin application visual](/visualisations/03-DataBase_initialized.JPG "Admin interface")
+
+    You can click "OK" and discover the application with :
+
+    - Prediction for personal images (asset 'Interface Utilisateur - :green[démo]')
+![Admin application visual](/visualisations/04a-User_Interface_personal_image.JPG "User interface")
+
+    - Prediction for web images (source : https://www.pexels.com)
+![User application visual](/visualisations/04b-User_Interface_web_image_step1.JPG "User interface")
+![User application visual](/visualisations/04b-User_Interface_web_image_step2.JPG "User interface")
+
+    - See the database informations (asset 'Interface Admin - :green[démo]')
+![Admin application visual](/visualisations/05-Database_informations.JPG "Admin interface")
+
+    - See the models informations (asset 'Interface Admin - :green[démo]')
+![Admin application visual](/visualisations/06-Models_informations.JPG "Admin interface")
+
+    - Simulate an accelerated production in order to train a new model with Airflow pipeline
+    and follow this one with MLflow
+    (asset 'Production accélérée - :green[démo]')
+![Admin application visual](/visualisations/07-Accelerated_Production.JPG "Admin interface")
+
+    *Airflow interface is available on http://127.0.1.0:8080
+![Airflow interface](/visualisations/07-Accelerated_Production.JPG "Airflow interface")
+
+    *MLflow interface is available on http://127.0.1.0:5000
+![MLflow interface](/visualisations/09-MLflow.JPG "MLflow interface")
 
