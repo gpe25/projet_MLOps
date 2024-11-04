@@ -1,6 +1,8 @@
 Animal recognition
 ==============================
 
+![Readme banner](/src/application/assets/banners/home_banner.jpg "Project banner")
+
 This project is a starting Pack for MLOps projects based on the subject "Animal recognition". It's not perfect so feel free to make some modifications on it.
 
 Project Organization
@@ -156,26 +158,26 @@ Project Architecture
 
     You can click "OK" and discover the application with :
 
-    - Prediction for personal images (asset 'Interface Utilisateur - :green[démo]')
+    - Prediction for personal images (asset 'Interface Utilisateur - démo')
 ![Admin application visual](/visualisations/04a-User_Interface_personal_image.JPG "User interface")
 
     - Prediction for web images (source : https://www.pexels.com)
 ![User application visual](/visualisations/04b-User_Interface_web_image_step1.JPG "User interface")
 ![User application visual](/visualisations/04b-User_Interface_web_image_step2.JPG "User interface")
 
-    - See the database informations (asset 'Interface Admin - :green[démo]')
+    - See the database informations (asset 'Interface Admin - démo')
 ![Admin application visual](/visualisations/05-Database_informations.JPG "Admin interface")
 
-    - See the models informations (asset 'Interface Admin - :green[démo]')
+    - See the models informations (asset 'Interface Admin - démo')
 ![Admin application visual](/visualisations/06-Models_informations.JPG "Admin interface")
 
     - Simulate an accelerated production in order to train a new model with Airflow pipeline
     and follow this one with MLflow
-    (asset 'Production accélérée - :green[démo]')
+    (asset 'Production accélérée - démo')
 ![Admin application visual](/visualisations/07-Accelerated_Production.JPG "Admin interface")
 
     *Airflow interface is available on http://127.0.1.0:8080
-![Airflow interface](/visualisations/07-Accelerated_Production.JPG "Airflow interface")
+![Airflow interface](/visualisations/08-New_model_pipeline.JPG "Airflow interface")
 
     *MLflow interface is available on http://127.0.1.0:5000
 ![MLflow interface](/visualisations/09-MLflow.JPG "MLflow interface")
